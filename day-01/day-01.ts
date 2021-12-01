@@ -10,5 +10,16 @@ const calculateIncreasing = (depths: number[]): number => {
   return increasingValues;
 }
 
+const formatDataIntoWindows = (depths: number[]): number[] => {
+  let windows: number[] = [];
+  for(let idx = 0; idx < depths.length - 2; ++idx) {
+    const windowValue = depths[idx] + depths[idx+1] + depths[idx+2];
+    windows.push(windowValue);
+  }
+  return windows;
+}
+
 const data = fs.readFileSync('./input.txt', 'utf-8').split('\n').map((num) => +num);
 console.log(calculateIncreasing(data));
+
+console.log(calculateIncreasing(formatDataIntoWindows(data)));
